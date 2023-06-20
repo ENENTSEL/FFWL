@@ -9,6 +9,10 @@
     <meta property="og:type" content="website">
 <title>Free Fire第三屆女槍神聯賽</title>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Roboto&display=swap");
+	
+
+
         html, body {
             margin: 0;
             padding: 0;
@@ -17,6 +21,41 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+	
+	      /* 共用的導覽列樣式 */
+        nav {
+            background-color: #333;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* 媒體查詢，螢幕寬度小於 600px 時，導覽列內容變大 */
+        @media (max-width: 600px) {
+            nav li a {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+	
+	    
+	
         
         .container {
             width: 100%;
@@ -56,6 +95,17 @@
 </head>
 
 <body>
+	
+	
+    <nav>
+        <ul>
+            <li><a href="#">選項1</a></li>
+            <li><a href="#">選項2</a></li>
+            <li><a href="#">選項3</a></li>
+        </ul>
+    </nav>
+	
+	
 	
 <div class="container_1">	
 <div class="index">
