@@ -24,79 +24,31 @@
 	
 <title>Free Fire第三屆女槍神聯賽</title>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Roboto&display=swap");
-	
 
-
-        html, body {
-    padding: 0;
-    background-image: url("PNG/bg.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y;
-        }
-	header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
-	  
-        
-        .container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-	    .container_1 {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .photos {
-            max-width: 100%;
-            max-height: 100%;
-			
-        }
-        
-        .photos img {
-    width: 100%;
-    height: auto;
-    border: 3px solid #C0C0C0;
-    border-radius: 10px;
-        }
-	    .index {
-            max-width: 100%;
-            max-height:100%;
-        }
-        
-        .index img {
-            width: 100%;
-            height: auto;
-        }
-	    .00{
-    width: 0px;
-	    }
-        
+</style>
+	
+	
+<script>
+    // 监听滚动事件
+    window.addEventListener("scroll", function() {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > this.prevScrollPos) {
+        // 向下滚动，隐藏导航栏
+        navbar.classList.add("hidden");
+      } else {
+        // 向上滚动，显示导航栏
+        navbar.classList.remove("hidden");
+      }
+      this.prevScrollPos = window.scrollY;
+    });
+  </script>
 	
 	
 	
-    </style>
-
 </head>
 
 	
-	
-	
-	
-	
-	
-	
+=
 	
 <body>
 	
@@ -155,12 +107,14 @@
     <div class="00">　</div>
  　　<img src="PNG/S2_03.jpg" width="1920" height="1080" alt="獎勵表"/>
  </div>
+<div class="Text"></div>
 
-	
 </div>
+<div class="Footer"><p>©2023 FFWL All rights reserved.</p></div>	
+
 	
 
- <script src="script.js"></script>	
+	
 </body>
 	
 </html>
