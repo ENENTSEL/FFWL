@@ -92,9 +92,6 @@ nav{
     transition: top 0.3s;
 }
 
-.navbar.hidden {
-    top: -80px; /* 隐藏导航栏的高度 */
-}
 
 li a {
     display: block;
@@ -134,7 +131,7 @@ li a:hover{
 		
     }
 	.logo{
-		height:50px;
-		margin-top:3px;
+		height:40px;
+		
 	}
 }
