@@ -4,7 +4,15 @@ nav{
 }
 .navbar{
     background-color: #CBCBCB;
+	position: fixed;
+    top: 0;
+    width: 100%;
+	transition: top 0.3s;
 }
+
+.navbar.hidden {
+      top: -80px; /* 隐藏导航栏的高度 */
+    }
 
 li a {
     display: block;
@@ -36,5 +44,10 @@ li a:hover{
     }
     .nav-link {
         padding:10px;
+		
     }
+	.logo{
+		height:45px;
+		margin-top: 3px;
+	}
 }

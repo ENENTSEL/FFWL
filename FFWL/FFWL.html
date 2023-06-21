@@ -87,6 +87,20 @@
 	
 	
     </style>
+<script>
+    // 监听滚动事件
+    window.addEventListener("scroll", function() {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > this.prevScrollPos) {
+        // 向下滚动，隐藏导航栏
+        navbar.classList.add("hidden");
+      } else {
+        // 向上滚动，显示导航栏
+        navbar.classList.remove("hidden");
+      }
+      this.prevScrollPos = window.scrollY;
+    });
+  </script>
 </head>
 
 	
@@ -104,7 +118,7 @@
           
             <div class="container-fluid">
                 <!-- 品牌logo -->
-                <a class="navbar-brand" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/FFWL.html"><img   height="70px" src="PNG/LOGO.png"></a>
+                <a class="navbar-brand" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/FFWL.html"><img class="logo" height="70px" src="PNG/LOGO.png"></a>
 
                 <!-- 第一部份：手機版 -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#linkbar">
@@ -116,8 +130,8 @@
                 <div class="collapse navbar-collapse" id="linkbar">
                     <!-- 列出內容 -->
                     <ul class="navbar-nav me-auto">
-						<li class="nav-item"><a class="nav-link" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/S1.html">第一屆</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/S2.html">第二屆</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/S1.html" target="_blank">第一屆</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/S2.html" target="_blank">第二屆</a></li>
                         <li class="nav-item"><a class="nav-link" href="https://xiaoan0711.github.io/FFWL.github.io/FFWL/ranking.html" target="_blank">第三屆即時積分榜</a></li>
 						<li class="nav-item"><a class="nav-link" href="https://www.youtube.com/@bluemoon516/live" target="_blank">直播連結</a></li>
 						<li class="nav-item"><a class="nav-link" href="https://forms.gle/XFxaxprEY2j1dQPB6" target="_blank">字卡申請</a></li>
