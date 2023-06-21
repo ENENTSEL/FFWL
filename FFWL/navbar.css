@@ -32,14 +32,9 @@ li a:hover{
 
 @media (max-width:500px){
     nav{
-        height:60px;
+        height:auto;
     }
     .nav-link {
-        padding:20px;
+        padding:10px;
     }
-	.LOGO{
-		height:50px;
-		margin-top: -15px;
-	}
-	
 }
