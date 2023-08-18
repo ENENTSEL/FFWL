@@ -142,31 +142,37 @@ video {
   <table id="table"></table>
 	 
  </div>	
-  <script>
-    $(document).ready(function() {
-      $.ajax({
-        type: "GET",
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwOefB1cmdoeQZ8nSFyxEPYe8nc2XdyuVXyeA_Kmk5kbQ8ckepz6Tqq97I-3ZuGzDrIgI_BN20PuSk/pub?gid=1029371996&single=true&output=csv",
-        dataType: "text",
-        success: function(data) {
-          // 解析CSV数据
-          var rows = data.split('\n');
-          var table = document.getElementById("table");
+     <script>
+        function updateTable() {
+            $.ajax({
+                type: "GET",
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwOefB1cmdoeQZ8nSFyxEPYe8nc2XdyuVXyeA_Kmk5kbQ8ckepz6Tqq97I-3ZuGzDrIgI_BN20PuSk/pub?gid=1029371996&single=true&output=csv",
+                dataType: "text",
+                cache: false, // 禁用快取
+                success: function(data) {
+                    var rows = data.split('\n');
+                    var table = document.getElementById("table");
+                    table.innerHTML = ""; // 清空表格
 
-          // 遍历每一行数据
-          for (var i = 0; i < rows.length; i++) {
-            var cells = rows[i].split(',');
-            var row = table.insertRow();
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].split(',');
+                        var row = table.insertRow();
 
-            // 遍历每个单元格数据
-            for (var j = 0; j < cells.length; j++) {
-              var cell = row.insertCell();
-              cell.textContent = cells[j];
-            }
-          }
+                        for (var j = 0; j < cells.length; j++) {
+                            var cell = row.insertCell();
+                            cell.textContent = cells[j];
+                        }
+                    }
+                }
+            });
         }
-      });
-    });
-  </script>
+
+        // 初始化時執行一次更新
+        updateTable();
+
+        // 每隔5秒執行一次更新
+        var interval = setInterval(updateTable, 3000); // 5000 毫秒 = 5 秒
+    </script>
 </body>
+
 </html>

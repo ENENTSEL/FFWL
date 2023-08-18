@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html><head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta charset="utf-8">
+    <meta property="og:title" content="OBS即時積分榜">
+    <meta property="og:description" content="Free Fire Women's League，簡稱:FFWL。">
+    <meta property="og:image" content="PNG/mini.jpg">
+    <meta property="og:url" content="https://xiaoan0711.github.io/FFWL.github.io/FFWL/FFWL.html">
+    <meta property="og:type" content="website">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>OBS即時積分榜</title>
+    
+    <link rel="stylesheet" href="./font.css"><style>
+    @import url("webfonts/GenSenRoundedTW_B_01/stylesheet.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: 'GFF Latin';
+	font-weight: 600;
+}
+  
+	  	
+	  
+        
+
+.Excel {
+    color: #FFFFFF;
+    font-size: 23px;
+    display: flex;
+    height: auto;
+    width: auto;
+/*    justify-content: center;*/
+/*    align-items: center;*/
+    
+    text-transform: uppercase;
+}
+	    
+		
+	 #table {
+	 
+    border-collapse: separate;
+    border-spacing: 10mm 5.9mm;
+  } 
+	 body {
+    background-image: url("./map.png");
+    background-repeat: no-repeat;
+    background-size: 80.5% auto;
+    }	
+		
+    </style>
+</head>
+<body>
+	
+ 
+
+	
+	<div class="Excel" style="padding-top: 24px;padding-left: 49px;">
+  <table id="table"></table>
+	 
+ </div>	
+   <script>
+        function updateTable() {
+            $.ajax({
+                type: "GET",
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwOefB1cmdoeQZ8nSFyxEPYe8nc2XdyuVXyeA_Kmk5kbQ8ckepz6Tqq97I-3ZuGzDrIgI_BN20PuSk/pub?gid=1109453706&single=true&output=csv",
+                dataType: "text",
+                cache: false, // 禁用快取
+                success: function(data) {
+                    var rows = data.split('\n');
+                    var table = document.getElementById("table");
+                    table.innerHTML = ""; // 清空表格
+
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].split(',');
+                        var row = table.insertRow();
+
+                        for (var j = 0; j < cells.length; j++) {
+                            var cell = row.insertCell();
+                            cell.textContent = cells[j];
+                        }
+                    }
+                }
+            });
+        }
+
+        // 初始化時執行一次更新
+        updateTable();
+
+        // 每隔5秒執行一次更新
+        var interval = setInterval(updateTable, 3000); // 5000 毫秒 = 5 秒
+    </script>
+</body>
+</html>
