@@ -125,6 +125,13 @@ video {
     border-collapse: separate;
     border-spacing: 10mm 5.9mm;
   } 
+	#table td:nth-child(2),
+    #table td:nth-child(3),
+    #table td:nth-child(4) {
+        text-align: center;
+    }
+	
+	
 	 body {
     background-image: url("./map.png");
     background-repeat: no-repeat;
@@ -138,40 +145,59 @@ video {
  
 
 	
-	<div class="Excel" style="padding-top: 24px;padding-left: 49px;">
-  <table id="table"></table>
+	<div class="Excel" style="padding-top: 3px;padding-left: 42px;">
+  <table id="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <!-- 添加更多表頭列 -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 這裡的數據將動態生成 -->
+        </tbody>
+    </table>
 	 
  </div>	
-   <script>
-        function updateTable() {
-            $.ajax({
-                type: "GET",
-                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwOefB1cmdoeQZ8nSFyxEPYe8nc2XdyuVXyeA_Kmk5kbQ8ckepz6Tqq97I-3ZuGzDrIgI_BN20PuSk/pub?gid=1109453706&single=true&output=csv",
-                dataType: "text",
-                cache: false, // 禁用快取
-                success: function(data) {
-                    var rows = data.split('\n');
-                    var table = document.getElementById("table");
-                    table.innerHTML = ""; // 清空表格
+ 
+	
+	
+	<script>
+        const apiKey = 'AIzaSyB2Nj8Pl8idyPd3aZyjscbPFSf3x1Vpv9s';
+        const spreadsheetId = '1COOG-OTMPIqRJNHjFsc4EBsOfA0Oc6bKQC6YLTErc-4';
+        const sheetName = 'OBS';
+        const dataTable = document.getElementById('table');
 
-                    for (var i = 0; i < rows.length; i++) {
-                        var cells = rows[i].split(',');
-                        var row = table.insertRow();
+        function fetchData() {
+            const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
 
-                        for (var j = 0; j < cells.length; j++) {
-                            var cell = row.insertCell();
-                            cell.textContent = cells[j];
-                        }
-                    }
-                }
-            });
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const values = data.values;
+
+                    // 清空表格內容
+                    dataTable.querySelector('tbody').innerHTML = '';
+
+                    values.forEach(row => {
+                        const rowElement = document.createElement('tr');
+                        row.forEach(cellData => {
+                            const cellElement = document.createElement('td');
+                            cellElement.textContent = cellData;
+                            rowElement.appendChild(cellElement);
+                        });
+                        dataTable.querySelector('tbody').appendChild(rowElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
         }
 
-        // 初始化時執行一次更新
-        updateTable();
-
-        // 每隔5秒執行一次更新
-        var interval = setInterval(updateTable, 30000); // 1000 毫秒 = 1 秒
+        // 初始載入數據並設置定時器以每隔一段時間重新載入
+        fetchData();
+        setInterval(fetchData, 60000); // 每隔 60 秒（毫秒數為 60000）重新載入一次
     </script>
 </body>
 </html>
