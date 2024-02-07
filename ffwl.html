@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta charset="utf-8">
+    <meta property="og:title" content="OBS即時積分榜">
+    <meta property="og:description" content="Free Fire Women's League，簡稱:FFWL。">
+    <meta property="og:image" content="PNG/mini.jpg">
+    <meta property="og:url" content="https://enentsel.github.io/FFWL-LEAGUE.github.io/FFWL.obs.html">
+    <meta property="og:type" content="website">
+	<link rel="icon" href="file:///C|/Users/AUSTIN_WEI/Desktop/123/favicon.ico" type="image/x-icon">
+    <title>OBS即時積分榜</title>
+    
+    <link rel="stylesheet" href="file:///C|/Users/AUSTIN_WEI/Desktop/123/font.css"><style>
+    @import url("file:///C|/Users/AUSTIN_WEI/Desktop/123/webfonts/GenSenRoundedTW_B_01/stylesheet.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: 'GFF Latin';
+	font-weight: 600;
+}
+  
+	  	
+	  
+        
+
+.Excel {
+    color: #FFFFFF;
+    font-size: 22px;
+    display: flex;
+    height: auto;
+    width: auto;
+/*    justify-content: center;*/
+/*    align-items: center;*/
+    font-weight:800;
+    text-transform: uppercase;
+}
+	    
+		
+	 #table {
+	 
+    border-collapse: separate;
+    border-spacing: 12.3mm 6.9mm;
+  } 
+	#table td:nth-child(2),
+    #table td:nth-child(3),
+    #table td:nth-child(4) {
+        text-align: center;
+    }
+	
+	
+	 body {
+    background-image: url("PNG/map.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    }	
+		
+    </style>
+</head>
+<body>
+	
+ 
+
+	
+	<div class="Excel" style="padding-top: 19px;padding-left: 58px;">
+  <table id="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <!-- 添加更多表頭列 -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 這裡的數據將動態生成 -->
+        </tbody>
+    </table>
+	 
+ </div>	
+ 
+	
+	
+	<script>
+        const apiKey = 'AIzaSyCyd_b64M22GKTdlyJQ6MoTpcp3benrZbs';
+        const spreadsheetId = '1COOG-OTMPIqRJNHjFsc4EBsOfA0Oc6bKQC6YLTErc-4';
+        const sheetName = 'OBS';
+        const dataTable = document.getElementById('table');
+
+        function fetchData() {
+            const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const values = data.values;
+
+                    // 清空表格內容
+                    dataTable.querySelector('tbody').innerHTML = '';
+
+                    values.forEach(row => {
+                        const rowElement = document.createElement('tr');
+                        row.forEach(cellData => {
+                            const cellElement = document.createElement('td');
+                            cellElement.textContent = cellData;
+                            rowElement.appendChild(cellElement);
+                        });
+                        dataTable.querySelector('tbody').appendChild(rowElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // 初始載入數據並設置定時器以每隔一段時間重新載入
+        fetchData();
+        setInterval(fetchData, 15000); // 每隔 60 秒（毫秒數為 60000）重新載入一次
+    </script>
+</body>
+</html>
